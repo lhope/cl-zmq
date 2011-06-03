@@ -96,18 +96,22 @@
 ;;  0MQ socket definition.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; socket types.
 (defconstant pair 0)
 (defconstant pub 1)
 (defconstant sub 2)
 (defconstant req 3)
 (defconstant rep 4)
-(defconstant xreq 5)
-(defconstant xrep 6)
+(defconstant dealer 5)
+(defconstant router 6)
 (defconstant pull 7)
 (defconstant push 8)
-(defconstant upstream pull)
-(defconstant downstream push)
+(defconstant xreq dealer)     ; old alias
+(defconstant xrep router)     ; old alias
+(defconstant upstream pull)   ; old alias
+(defconstant downstream push) ; old alias
 
+;; socket options
 (defconstant hwm 1)
 (defconstant swap 3)
 (defconstant affinity 4)
@@ -120,7 +124,18 @@
 (defconstant sndbuf 11)
 (defconstant rcvbuf 12)
 (defconstant rcvmore 13)
+;; LRH2011-06-04: Can't define constants fd, type and events as
+;; they conflict with CFFI and/or other code here.
+(defconstant zfd 14)
+(defconstant zevents 15)
+(defconstant ztype 16)
+(defconstant linger 17)
+(defconstant reconnect-ivl 18)
+(defconstant backlog 19)
+(defconstant recovery-ivl-msec 20)
+(defconstant reconnect-ivl-max 21)
 
+;; send/recv options.
 (defconstant noblock 1)
 (defconstant sndmore 2)
 

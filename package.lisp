@@ -54,6 +54,16 @@
    #:vsm
    #:xrep
    #:xreq
+   #:dealer
+   #:router
+   #:zfd
+   #:zevents
+   #:ztype
+   #:linger
+   #:reconnect-ivl
+   #:backlog
+   #:recovery-ivl-msec
+   #:reconnect-ivl-max
 
    #:events
 
