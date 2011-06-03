@@ -134,13 +134,13 @@ The string must be freed with FOREIGN-STRING-FREE."
 (defun msg-copy (dst src)
   (%msg-copy (msg-raw dst) (msg-raw src)))
 
-(defun setsockopt (socket option value)
+(defun setsockopt (socket option value &optional (int-type :int64))
   (etypecase value
     (string (with-foreign-string (string value)
               (%setsockopt socket option string (length value))))
-    (integer (with-foreign-object (int :int64)
-               (setf (mem-aref int :int64) value)
-               (%setsockopt socket option int (foreign-type-size :int64))))))
+    (integer (with-foreign-object (int int-type)
+               (setf (mem-aref int int-type) value)
+               (%setsockopt socket option int (foreign-type-size int-type))))))
 
 (defun getsockopt (socket option)
   (with-foreign-objects ((opt :int64)
