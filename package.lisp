@@ -14,6 +14,57 @@
   (:shadow #:close #:identity #:push)
   (:export
    ;; constants
+   #:+affinity+
+   #:+backlog+
+   #:+dealer+
+   #:+delimiter+
+   #:+downstream+
+   #:+efsm+
+   #:+emthread+
+   #:+enocompatproto+
+   #:+events+
+   #:+fd+
+   #:+forwarder+
+   #:+hwm+
+   #:+identity+
+   #:+linger+
+   #:+max-vsm-size+
+   #:+mcast-loop+
+   #:+msg-more+
+   #:+msg-shared+
+   #:+noblock+
+   #:+pair+
+   #:+pollerr+
+   #:+pollin+
+   #:+pollout+
+   #:+pub+
+   #:+pull+
+   #:+push+
+   #:+queue+
+   #:+rate+
+   #:+rcvbuf+
+   #:+rcvmore+
+   #:+reconnect-ivl+
+   #:+reconnect-ivl-max+
+   #:+recovery-ivl+
+   #:+recovery-ivl-msec+
+   #:+rep+
+   #:+req+
+   #:+router+
+   #:+sndbuf+
+   #:+sndmore+
+   #:+streamer+
+   #:+sub+
+   #:+subscribe+
+   #:+swap+
+   #:+type+
+   #:+unsubscribe+
+   #:+upstream+
+   #:+vsm+
+   #:+xrep+
+   #:+xreq+
+
+   ;; deprecated constants
    #:affinity
    #:delimiter
    #:downstream

@@ -14,9 +14,15 @@
 ;;  0MQ errors.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defconstant hausnumero 156384712)
+(defconstant +hausnumero+ 156384712)
 
 ;;  Native 0MQ error codes.
+(defconstant +emthread+ (+ +hausnumero+ 50))
+(defconstant +efsm+ (+ +hausnumero+ 51))
+(defconstant +enocompatproto+ (+ +hausnumero+ 52))
+
+;; DEPRECATED
+(defconstant hausnumero 156384712)
 (defconstant emthread (+ hausnumero 50))
 (defconstant efsm (+ hausnumero 51))
 (defconstant enocompatproto (+ hausnumero 52))
@@ -28,16 +34,23 @@
 ;;  0MQ message definition.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defconstant max-vsm-size 30)
+(defconstant +max-vsm-size+ 30)
 
 ;;  Message types. These integers may be stored in 'content' member of the
 ;;  message instead of regular pointer to the data.
-(defconstant delimiter 31)
-(defconstant vsm 32)
+(defconstant +delimiter+ 31)
+(defconstant +vsm+ 32)
 
 ;; Message flags. ZMQ_MSG_SHARED is strictly speaking not a message flag
 ;; (it has no equivalent in the wire format), however, making  it a flag
 ;; allows us to pack the stucture tigher and thus improve performance.
+(defconstant +msg-more+ 1)
+(defconstant +msg-shared+ 128)
+
+;; DEPRECATED
+(defconstant max-vsm-size 30)
+(defconstant delimiter 31)
+(defconstant vsm 32)
 (defconstant msg-more 1)
 (defconstant msg-shared 128)
 
@@ -93,9 +106,51 @@
   (context      :pointer))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  0MQ socket definition.
+;;  0MQ socket definitions (version 2.1).
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; socket types.
+(defconstant +pair+ 0)
+(defconstant +pub+ 1)
+(defconstant +sub+ 2)
+(defconstant +req+ 3)
+(defconstant +rep+ 4)
+(defconstant +dealer+ 5)
+(defconstant +router+ 6)
+(defconstant +pull+ 7)
+(defconstant +push+ 8)
+(defconstant +xreq+ +dealer+)
+(defconstant +xrep+ +router+)
+(defconstant +upstream+ +pull+)
+(defconstant +downstream+ +push+)
+
+;; socket options.
+(defconstant +hwm+ 1)
+(defconstant +swap+ 3)
+(defconstant +affinity+ 4)
+(defconstant +identity+ 5)
+(defconstant +subscribe+ 6)
+(defconstant +unsubscribe+ 7)
+(defconstant +rate+ 8)
+(defconstant +recovery-ivl+ 9)
+(defconstant +mcast-loop+ 10)
+(defconstant +sndbuf+ 11)
+(defconstant +rcvbuf+ 12)
+(defconstant +rcvmore+ 13)
+(defconstant +fd+ 14)
+(defconstant +events+ 15)
+(defconstant +type+ 16)
+(defconstant +linger+ 17)
+(defconstant +reconnect-ivl+ 18)
+(defconstant +backlog+ 19)
+(defconstant +recovery-ivl-msec+ 20) ;; opt. recovery time, reconcile in 3.x
+(defconstant +reconnect-ivl-max+ 21)
+
+;; send/recv options
+(defconstant +noblock+ 1)
+(defconstant +sndmore+ 2)
+
+;; DEPRECATED (version 2.0 only)
 (defconstant pair 0)
 (defconstant pub 1)
 (defconstant sub 2)
@@ -168,6 +223,11 @@
 ;;  I/O multiplexing.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defconstant +pollin+ 1)
+(defconstant +pollout+ 2)
+(defconstant +pollerr+ 4)
+
+;; DEPRECATED
 (defconstant pollin 1)
 (defconstant pollout 2)
 (defconstant pollerr 4)
@@ -198,6 +258,11 @@
 ;;  Devices
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defconstant +streamer+ 1)
+(defconstant +forwarder+ 2)
+(defconstant +queue+ 3)
+
+;; DEPRECATED
 (defconstant streamer 1)
 (defconstant forwarder 2)
 (defconstant queue 3)
