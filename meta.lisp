@@ -49,6 +49,12 @@
                             (let ((errno (errno)))
                               (cond
                                 #-windows
-                                ((eq errno isys:ewouldblock) (error 'error-again :argument errno))
+                                ((eq errno isys:ewouldblock)
+				 (error 'error-again :argument errno))
+				((eq errno isys:eintr)
+				 (error 'error-again :argument errno))
+				;; Lucas Hope 2012-02-24 - this is a workaround for a bug in 2.1.11.
+				((eq errno 0)
+				 (error 'error-again :argument errno))
                                 (t (error (convert-from-foreign (%strerror errno) :string)))))
                             ,ret))))))))
